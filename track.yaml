@@ -5,7 +5,7 @@ icon: Box
 color: cyan
 tier: free
 lessons:
-  - { order: 1, dir: lesson-01-introduction-to-kubernetes-edx-linuxfoundation, tier: free }
-  - { order: 2, dir: lesson-02-kubernetes-official-tutorials, tier: free }
-  - { order: 3, dir: lesson-03-helm-charts-artifact-hub, tier: free }
+  - { order: 1, dir: lesson-01-helm-charts-artifact-hub, tier: free }
+  - { order: 2, dir: lesson-02-introduction-to-kubernetes-edx-linuxfoundation, tier: free }
+  - { order: 3, dir: lesson-03-kubernetes-official-tutorials, tier: free }
   - { order: 4, dir: lesson-04-kustomize-examples, tier: free }
