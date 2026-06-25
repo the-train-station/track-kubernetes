@@ -1,0 +1,35 @@
+# overlays/dev/kustomization.yaml — Development environment customization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dev
+
+resources:
+  - ../../base
+
+# Use dev image tag
+images:
+  - name: nginx
+    newTag: "1.24-alpine"
+
+# Override replica count (minimal for dev)
+replicas:
+  - name: webapp
+    count: 1
+
+# Dev-specific labels
+commonLabels:
+  environment: dev
+
+# Patch the ConfigMap for dev settings
+patches:
+  - target:
+      kind: ConfigMap
+      name: webapp-config
+    patch: |
+      - op: replace
+        path: /data/LOG_LEVEL
+        value: "debug"
+      - op: replace
+        path: /data/CACHE_TTL
+        value: "0"

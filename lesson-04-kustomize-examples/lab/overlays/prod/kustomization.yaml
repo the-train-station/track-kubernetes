@@ -1,0 +1,50 @@
+# overlays/prod/kustomization.yaml — Production environment customization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: prod
+
+resources:
+  - ../../base
+
+# Use stable production image tag
+images:
+  - name: nginx
+    newTag: "1.24"
+
+# Scale for production traffic
+replicas:
+  - name: webapp
+    count: 3
+
+# Production labels
+commonLabels:
+  environment: prod
+
+# Production patches: resource limits and enhanced config
+patches:
+  # Add resource limits to the deployment
+  - target:
+      kind: Deployment
+      name: webapp
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+  # Production ConfigMap values
+  - target:
+      kind: ConfigMap
+      name: webapp-config
+    patch: |
+      - op: replace
+        path: /data/LOG_LEVEL
+        value: "warn"
+      - op: replace
+        path: /data/CACHE_TTL
+        value: "3600"

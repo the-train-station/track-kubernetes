@@ -1,0 +1,38 @@
+# 04-rolling-update.yaml — Rolling update to nginx:1.25
+# Demonstrates: Zero-downtime rolling updates via image change
+# Apply with: kubectl apply -f 04-rolling-update.yaml
+# Watch rollout: kubectl rollout status deployment/nginx
+# Rollback if needed: kubectl rollout undo deployment/nginx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.25
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi

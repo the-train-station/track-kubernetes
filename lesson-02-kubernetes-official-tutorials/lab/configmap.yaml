@@ -1,0 +1,13 @@
+# configmap.yaml — Application settings injected as environment variables
+# Demonstrates: ConfigMap usage for externalizing configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: echoserver-config
+data:
+  # Application environment
+  ENVIRONMENT: "lab"
+  # Log level (debug, info, warn, error)
+  LOG_LEVEL: "info"
+  # Application name shown in responses
+  APP_NAME: "k8s-lab-echoserver"

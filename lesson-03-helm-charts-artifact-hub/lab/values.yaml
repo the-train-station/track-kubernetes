@@ -1,0 +1,49 @@
+# values.yaml — Custom overrides for ingress-nginx Helm chart
+# Chart: https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx
+# Usage: helm install ingress-nginx ingress-nginx/ingress-nginx -f values.yaml
+
+controller:
+  # Scale the ingress controller for higher availability
+  replicaCount: 2
+
+  # Resource constraints for predictable scheduling
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+  # Pod annotations for monitoring integration
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "10254"
+
+  # Service configuration
+  service:
+    type: ClusterIP
+    annotations:
+      service.beta.kubernetes.io/description: "Lab ingress controller"
+
+  # Metrics for observability
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: false
+
+  # Admission webhooks (disable for local dev)
+  admissionWebhooks:
+    enabled: false
+
+# Default backend for unmatched routes
+defaultBackend:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 50m
+      memory: 64Mi

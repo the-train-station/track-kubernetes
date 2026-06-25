@@ -1,0 +1,32 @@
+# 03-scale.yaml — Same nginx deployment scaled to 5 replicas
+# Demonstrates: Horizontal scaling by updating the replica count
+# Apply with: kubectl apply -f 03-scale.yaml
+# Watch scaling: kubectl get pods -l app=nginx -w
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.24
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi

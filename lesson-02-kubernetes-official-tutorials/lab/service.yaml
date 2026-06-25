@@ -1,0 +1,17 @@
+# service.yaml — NodePort service for external access
+# Access via: curl http://localhost:<nodePort>
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+  labels:
+    app: echoserver
+spec:
+  type: NodePort
+  selector:
+    app: echoserver
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+      protocol: TCP

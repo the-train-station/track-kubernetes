@@ -1,0 +1,16 @@
+# 02-service.yaml — ClusterIP Service exposing nginx on port 80
+# Demonstrates: Service discovery and internal load balancing
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
