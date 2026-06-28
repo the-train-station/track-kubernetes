@@ -9,9 +9,3 @@ lessons:
   - { order: 2, dir: lesson-02-introduction-to-kubernetes-edx-linuxfoundation, tier: free }
   - { order: 3, dir: lesson-03-kubernetes-official-tutorials, tier: free }
   - { order: 4, dir: lesson-04-kustomize-examples, tier: free }
-  - { order: 5, dir: lesson-05-kubernetes-networking-deep-dive, tier: premium }
-  - { order: 6, dir: lesson-06-kubernetes-security-rbac, tier: premium }
-  - { order: 7, dir: lesson-07-eks-production-workshop, tier: premium }
-  - { order: 8, dir: lesson-08-kubernetes-the-hard-way, tier: premium }
-  - { order: 9, dir: lesson-09-gitops-argocd-flux, tier: premium }
-  - { order: 10, dir: lesson-10-kubernetes-observability, tier: premium }

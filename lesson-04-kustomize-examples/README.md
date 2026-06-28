@@ -101,6 +101,10 @@ The most common Kustomize problems are usually design problems:
 
 Before using Kustomize in a team workflow, decide how you will validate `kubectl kustomize` output in CI and how reviewers should inspect rendered changes.
 
+## Deliverable
+
+Produce an overlay validation note for the lab. Include rendered output for the base, dev, and prod overlays; a short diff showing environment-specific changes; and a reviewer checklist covering namespace, labels, replicas, image tag, ConfigMap values, resource requests, and cleanup.
+
 ## Practice Notes
 
 - Treat the repository as source material to inspect, not just clone. Review the README, release history, examples, issues, license, and maintenance signals before deciding whether to reuse it.

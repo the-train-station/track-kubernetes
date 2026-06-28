@@ -93,6 +93,10 @@ Pick only one for the first follow-up. Depth is more useful than skimming five u
 
 After the upstream tutorials make sense, revisit the same concepts in a managed environment such as EKS. Notice what stays the same and what the cloud provider adds around cluster provisioning, IAM, networking, and add-ons. This is the cleanest way to avoid confusing Kubernetes itself with vendor-specific setup.
 
+## Deliverable
+
+Create a troubleshooting checklist for the official tutorial workflow. Include commands for inspecting Pods, Deployments, Services, rollout history, logs, Events, and ConfigMaps, plus one example of a failed rollout or configuration mistake and the exact command you used to recover.
+
 ## Practice Notes
 
 - Run hands-on work in a sandbox and keep a short lab log with commands, screenshots or outputs, resources created, cleanup steps, and the one pattern you would reuse in production.
