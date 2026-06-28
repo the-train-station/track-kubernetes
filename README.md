@@ -6,7 +6,7 @@
 Container orchestration and cloud-native applications.
 
 Part of [Train Station](https://github.com/jon-the-dev/saas-train-station), a tiered
-learning platform. This repo holds the **free** lessons for this track. **6 additional premium lessons** — EKS Workshop, Istio Service Mesh Lab, K8s Reference Architecture for Multi-Tenancy, Kubernetes Patterns (Bilgin Ibryam), and more — are available in the Train Station app.
+learning platform. This repo holds the **free** lessons for this track. **6 additional premium lessons** — Kubernetes networking, security and RBAC, EKS production operations, Kubernetes the Hard Way, GitOps, and observability — are available in the premium track.
 
 ## Lessons
 

@@ -108,6 +108,10 @@ When you finish, choose a follow-on resource based on your goal:
 
 The course is successful if it makes those next steps feel approachable.
 
+## Deliverable
+
+Submit a Kubernetes basics command worksheet from the lab. Include the exact commands used to create the cluster, deploy nginx, expose it with a Service, scale it, perform a rolling update, roll back once, and clean up. For each command group, capture one expected observation such as Ready Pods, a ClusterIP Service, a successful rollout status, or the restored image after rollback.
+
 ## Practice Notes
 
 - Run hands-on work in a sandbox and keep a short lab log with commands, screenshots or outputs, resources created, cleanup steps, and the one pattern you would reuse in production.

@@ -11,7 +11,13 @@ Deploy the echoserver application and confirm it is working.
 3. Use `kubectl port-forward svc/echoserver 8080:80` to access the service
 4. Curl `http://localhost:8080` and confirm you receive a response
 
-**Success criteria:** All pods Running, HTTP 200 response from the service.
+**Validation commands:**
+```bash
+make status
+curl -i http://localhost:8080
+```
+
+**Expected observations:** all pods are `Running` with `READY 1/1`, and curl returns `HTTP/1.1 200 OK`.
 
 ---
 
@@ -24,6 +30,14 @@ Modify the ConfigMap and observe how changes propagate.
 3. Check if existing pods picked up the change (hint: they won't automatically)
 4. Force a rollout: `kubectl rollout restart deployment/echoserver`
 5. Verify the new env var in a pod: `kubectl exec <pod-name> -- env | grep LOG_LEVEL`
+
+**Validation commands:**
+```bash
+kubectl rollout status deployment/echoserver
+kubectl exec deploy/echoserver -- env | grep LOG_LEVEL
+```
+
+**Expected observations:** rollout status reports success, and the selected Pod prints `LOG_LEVEL=debug`.
 
 **Question:** Why don't ConfigMap changes automatically propagate to running pods?
 
@@ -41,6 +55,14 @@ Observe how Kubernetes distributes traffic across replicas.
    ```
 4. Scale back down to 2 and repeat — observe the distribution changes
 
+**Validation commands:**
+```bash
+kubectl get deployment echoserver
+kubectl get pods -l app=echoserver
+```
+
+**Expected observations:** the Deployment reports the requested replica count, and repeated curl responses show more than one hostname when multiple Pods are Ready.
+
 **Question:** What scheduling strategy does the Service use by default? How would you change it?
 
 ---
@@ -56,6 +78,15 @@ Perform a rolling update and practice recovery.
 5. Observe the failed pods: `kubectl get pods -l app=echoserver`
 6. Rollback: `make rollback`
 7. Confirm the deployment is healthy again
+
+**Validation commands:**
+```bash
+kubectl rollout history deployment/echoserver
+kubectl get pods -l app=echoserver
+kubectl describe deployment echoserver | grep Image
+```
+
+**Expected observations:** the bad image creates failed or waiting Pods, rollback creates a new successful revision, and the Deployment returns to the previous working image.
 
 **Question:** What does `maxUnavailable` control during a rolling update? What happens if you set it to 0?
 
@@ -83,5 +114,13 @@ Explore what happens when pods exceed their resource limits.
          app: echoserver
    ```
 5. Try draining a node and observe how the PDB protects availability
+
+**Validation commands:**
+```bash
+kubectl describe pod -l app=echoserver
+kubectl get pdb
+```
+
+**Expected observations:** Pods that exceed memory limits show `OOMKilled` or restart events, and the PodDisruptionBudget reports at least one allowed or protected Pod depending on current availability.
 
 **Question:** What is the difference between `requests` and `limits`? When does the scheduler use each?

@@ -110,6 +110,10 @@ This is where Artifact Hub becomes more than a package browser. It becomes a way
 
 After one or two sandbox installs, write down a lightweight checklist for future chart adoption. Include items such as source verification, release recency, values review, rendered manifest inspection, security defaults, and upgrade notes. That checklist is the real output of this lesson because it turns one successful install into a repeatable engineering practice.
 
+## Deliverable
+
+Create a short chart evaluation packet for one Artifact Hub chart. Include the completed `lab/chart-evaluation-checklist.md`, the default and custom rendered manifests from `lab/helm-evaluate.sh`, a brief diff summary, and a final adopt/defer/reject decision with the top three operational risks.
+
 ## Practice Notes
 
 - Treat the repository as source material to inspect, not just clone. Review the README, release history, examples, issues, license, and maintenance signals before deciding whether to reuse it.
