@@ -9,3 +9,5 @@ lessons:
   - { order: 2, dir: lesson-02-introduction-to-kubernetes-edx-linuxfoundation, tier: free }
   - { order: 3, dir: lesson-03-kubernetes-official-tutorials, tier: free }
   - { order: 4, dir: lesson-04-kustomize-examples, tier: free }
+  - { order: 11, dir: lesson-11-docker-fundamentals-build-and-run-your-first-container, tier: free }
+  - { order: 12, dir: lesson-12-kubernetes-backup-disaster-recovery-with-velero, tier: free }

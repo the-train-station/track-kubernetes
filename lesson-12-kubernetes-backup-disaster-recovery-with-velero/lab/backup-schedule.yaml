@@ -1,0 +1,15 @@
+# Velero Schedule — daily backup of a single namespace, retained for 30 days.
+# Apply with: kubectl apply -f backup-schedule.yaml
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-backup
+  namespace: velero
+spec:
+  # Every day at 02:00 UTC
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces:
+      - test-app
+    # 720h0m0s = 30 days. Velero garbage-collects expired backups automatically.
+    ttl: 720h0m0s
